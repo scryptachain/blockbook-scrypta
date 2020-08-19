@@ -78,10 +78,10 @@ var (
 	dbStatsPeriodHours  = flag.Int("dbstatsperiod", 24, "period of db stats collection in hours, 0 disables stats collection")
 
 	// resync index at least each resyncIndexPeriodMs (could be more often if invoked by message from ZeroMQ)
-	resyncIndexPeriodMs = flag.Int("resyncindexperiod", 935093, "resync index period in milliseconds")
+	resyncIndexPeriodMs = flag.Int("resyncindexperiod", 50017, "resync index period in milliseconds")
 
 	// resync mempool at least each resyncMempoolPeriodMs (could be more often if invoked by message from ZeroMQ)
-	resyncMempoolPeriodMs = flag.Int("resyncmempoolperiod", 60017, "resync mempool period in milliseconds")
+	resyncMempoolPeriodMs = flag.Int("resyncmempoolperiod", 40017, "resync mempool period in milliseconds")
 )
 
 var (
