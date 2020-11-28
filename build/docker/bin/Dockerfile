@@ -1,15 +1,11 @@
 # initialize from the image
 
-#FROM debian:9
-FROM ubuntu:16.04
+FROM debian:9
 RUN apt-get update
 RUN apt-get install software-properties-common -y
-RUN add-apt-repository ppa:bitcoin/bitcoin -y && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y build-essential git wget pkg-config lxc-dev libzmq3-dev \
+RUN apt-get install -y build-essential git wget pkg-config lxc-dev libzmq3-dev \
                        libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev \
-                       libboost-all-dev libdb4.8-dev libdb4.8++-dev libevent-dev libminiupnpc-dev \
+                       libevent-dev libminiupnpc-dev \
                        liblz4-dev graphviz && \
     apt-get clean
 
