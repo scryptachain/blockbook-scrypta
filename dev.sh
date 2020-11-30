@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# make all-scrypta
+make deb-blockbook-scrypta
+docker container stop scryptabb
+docker container rm scryptabb
+
 cd run
 mkdir build
 cp ../build/*.deb ./build/

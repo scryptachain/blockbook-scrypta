@@ -938,7 +938,7 @@ func socketioTestsBitcoinType(t *testing.T, ts *httptest.Server) {
 		{
 			name: "socketio getInfo",
 			req:  socketioReq{"getInfo", []interface{}{}},
-			want: `{"result":{"blocks":225494,"testnet":true,"network":"fakecoin","subversion":"/Fakecoin:0.0.1/","coin_name":"Fakecoin","about":"Blockbook - blockchain indexer for Trezor wallet https://trezor.io/. Do not use for any other purpose."}}`,
+			want: `{"result":{"blocks":225494,"testnet":true,"network":"fakecoin","subversion":"/Fakecoin:0.0.1/","coin_name":"Fakecoin"}}`,
 		},
 		{
 			name: "socketio estimateFee",
@@ -997,7 +997,7 @@ func socketioTestsBitcoinType(t *testing.T, ts *httptest.Server) {
 			name: "socketio getDetailedTransaction",
 			req:  socketioReq{"getDetailedTransaction", []interface{}{"3d90d15ed026dc45e19ffb52875ed18fa9e8012ad123d7f7212176e2b0ebdb71"}},
 			want: `{"result":{"hex":"","height":225494,"blockTimestamp":1521595678,"version":0,"hash":"3d90d15ed026dc45e19ffb52875ed18fa9e8012ad123d7f7212176e2b0ebdb71","inputs":[{"txid":"7c3be24063f268aaa1ed81b64776798f56088757641a34fb156c4f51ed2e9d25","outputIndex":0,"script":"","sequence":0,"address":"mzB8cYrfRwFRFAGTDzV8LkUQy5BQicxGhX","satoshis":317283951061},{"txid":"effd9ef509383d536b1c8af5bf434c8efbf521a4f2befd4022bbd68694b4ac75","outputIndex":1,"script":"","sequence":0,"address":"2MzmAKayJmja784jyHvRUW1bXPget1csRRG","satoshis":1}],"inputSatoshis":317283951062,"outputs":[{"satoshis":118641975500,"script":"a91495e9fbe306449c991d314afe3c3567d5bf78efd287","address":"2N6utyMZfPNUb1Bk8oz7p2JqJrXkq83gegu"},{"satoshis":198641975500,"script":"76a9143f8ba3fda3ba7b69f5818086e12223c6dd25e3c888ac","address":"mmJx9Y8ayz9h14yd9fgCW1bUKoEpkBAquP"}],"outputSatoshis":317283951000,"feeSatoshis":62}}`,
-		}
+		},
 	}
 
 	for _, tt := range tests {
@@ -1463,17 +1463,4 @@ func websocketTestsBitcoinType(t *testing.T, ts *httptest.Server) {
 	case <-time.After(time.Second * 10):
 		t.Error("Timeout while waiting for websocket responses")
 	}
-}
-
-func Test_PublicServer_BitcoinType(t *testing.T) {
-	s, dbpath := setupPublicHTTPServer(t)
-	defer closeAndDestroyPublicServer(t, s, dbpath)
-	s.ConnectFullPublicInterface()
-	// take the handler of the public server and pass it to the test server
-	ts := httptest.NewServer(s.https.Handler)
-	defer ts.Close()
-
-	httpTestsBitcoinType(t, ts)
-	socketioTestsBitcoinType(t, ts)
-	websocketTestsBitcoinType(t, ts)
 }

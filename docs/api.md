@@ -42,7 +42,7 @@ Response:
   "blockbook": {
     "coin": "Bitcoin",
     "host": "blockbook",
-    "version": "0.3.5",
+    "version": "6",
     "gitCommit": "3d9ad91",
     "buildTime": "2019-05-17T14:34:00+00:00",
     "syncMode": true,
@@ -54,8 +54,7 @@ Response:
     "lastMempoolTime": "2019-05-22T18:10:10.27929383+02:00",
     "mempoolSize": 17348,
     "decimals": 8,
-    "dbSize": 191887866502,
-    "about": "Blockbook - blockchain indexer for Trezor wallet https://trezor.io/. Do not use for any other purpose."
+    "dbSize": 191887866502
   },
   "backend": {
     "chain": "main",
