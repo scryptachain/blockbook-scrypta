@@ -2,31 +2,6 @@
 
 **Blockbook** provides REST, websocket and socket.io API to the indexed blockchain.
 
-There are two versions of provided API.
-
-## Legacy API V1
-
-The legacy API is a compatible subset of API provided by **Bitcore Insight**. It supports only Bitcoin-type coins. The details of the REST/socket.io requests can be found in the Insight's documentation.
-
-### REST API
-```
-GET /api/v1/block-index/<block height>
-GET /api/v1/tx/<txid>
-GET /api/v1/address/<address>
-GET /api/v1/utxo/<address>
-GET /api/v1/block/<block height | block hash>
-GET /api/v1/estimatefee/<number of blocks>
-GET /api/v1/sendtx/<hex tx data>
-POST /api/v1/sendtx (hex tx data in request body)  
-```
-
-### Socket.io API
-Socket.io interface is provided at `/socket.io/`. The interface also can be explored using Blockbook Socket.io Test Page found at `/test-socketio.html`.
-
-The legacy API is provided as is and will not be further developed.
-
-The legacy API is currently (Blockbook v0.3.4) also accessible without the */v1/* prefix, however in the future versions the version less access will be removed.
-
 ## API V2
 
 API V2 is the current version of API. It can be used with all coin types that Blockbook supports. API V2 can be accessed using REST and websocket interface.

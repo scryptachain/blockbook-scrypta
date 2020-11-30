@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker container restart scryptabb
-
+make all-scrypta
 cd run
 mkdir build
 cp ../build/*.deb ./build/
