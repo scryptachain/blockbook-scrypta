@@ -1,0 +1,4 @@
+build/*.deb
+build/blockbook
+build/ldb
+build/sst_dump
