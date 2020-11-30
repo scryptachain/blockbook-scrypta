@@ -140,6 +140,7 @@ func (s *PublicServer) ConnectFullPublicInterface() {
 		serveMux.HandleFunc(path+"block/", s.htmlTemplateHandler(s.explorerBlock))
 		serveMux.HandleFunc(path+"spending/", s.htmlTemplateHandler(s.explorerSpendingTx))
 		serveMux.HandleFunc(path+"sendtx", s.htmlTemplateHandler(s.explorerSendTx))
+		serveMux.HandleFunc(path+"masternodes", s.htmlTemplateHandler(s.explorerMasternodes))
 		serveMux.HandleFunc(path+"mempool", s.htmlTemplateHandler(s.explorerMempool))
 	} else {
 		// redirect to wallet requests for tx and address, possibly to external site
@@ -400,6 +401,7 @@ const (
 	blocksTpl
 	blockTpl
 	sendTransactionTpl
+	masternodesTpl
 	mempoolTpl
 
 	tplCount
@@ -485,6 +487,7 @@ func (s *PublicServer) parseTemplates() []*template.Template {
 	t[indexTpl] = createTemplate("./static/templates/index.html", "./static/templates/base.html")
 	t[blocksTpl] = createTemplate("./static/templates/blocks.html", "./static/templates/paging.html", "./static/templates/base.html")
 	t[sendTransactionTpl] = createTemplate("./static/templates/sendtx.html", "./static/templates/base.html")
+	t[masternodesTpl] = createTemplate("./static/templates/masternodes.html", "./static/templates/base.html")
 	if s.chainParser.GetChainType() == bchain.ChainEthereumType {
 		t[txTpl] = createTemplate("./static/templates/tx.html", "./static/templates/txdetail_ethereumtype.html", "./static/templates/base.html")
 		t[addressTpl] = createTemplate("./static/templates/address.html", "./static/templates/txdetail_ethereumtype.html", "./static/templates/paging.html", "./static/templates/base.html")
@@ -825,6 +828,12 @@ func (s *PublicServer) explorerSendTx(w http.ResponseWriter, r *http.Request) (t
 		}
 	}
 	return sendTransactionTpl, data, nil
+}
+
+func (s *PublicServer) explorerMasternodes(w http.ResponseWriter, r *http.Request) (tpl, *TemplateData, error) {
+	s.metrics.ExplorerViews.With(common.Labels{"action": "masternodes"}).Inc()
+	data := s.newTemplateData()
+	return masternodesTpl, data, nil
 }
 
 func (s *PublicServer) explorerMempool(w http.ResponseWriter, r *http.Request) (tpl, *TemplateData, error) {

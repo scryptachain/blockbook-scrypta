@@ -1,6 +1,6 @@
 #!/bin/bash
 
-make deb-blockbook-scrypta
+# make deb-blockbook-scrypta
 docker container stop scryptabb
 docker container rm scryptabb
 
