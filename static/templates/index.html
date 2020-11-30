@@ -20,8 +20,8 @@
                     <td class="data">{{$bb.Host}}</td>
                 </tr>
                 <tr>
-                    <td>Version / Commit / Build</td>
-                    <td class="data">{{$bb.Version}} / <a href="https://github.com/scryptachain/blockbook-scrypta/commit/{{$bb.GitCommit}}" target="_blank" rel="noopener noreferrer">{{$bb.GitCommit}}</a> / {{$bb.BuildTime}}</td>
+                    <td>Version</td>
+                    <td class="data">{{$bb.Version}}</td>
                 </tr>
                 <tr>
                     <td>Synchronized</td>
@@ -44,7 +44,7 @@
                     <td class="data">{{formatTime $bb.LastMempoolTime}}</td>
                 </tr>
                 <tr>
-                    <td>Transactions in Mempool</td>
+                    <td>Txs in Mempool</td>
                     <td class="data">{{if .InternalExplorer}}<a href="/mempool">{{$bb.MempoolSize}}</a>{{else}}{{$bb.MempoolSize}}{{end}}</td>
                 </tr>
                 <tr>
