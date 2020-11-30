@@ -9,3 +9,5 @@ docker run --privileged -d --name scryptabb -p 9149:9149 scrypta:blockbook-scryp
 docker exec scryptabb bash -c "cd /root && ./launchd.sh &"
 sleep 60
 docker exec scryptabb bash -c "cd /root && ./launchbb.sh &"
+sleep 30
+docker exec scryptabb bash -c "cd /root && ./launchbb.sh &"

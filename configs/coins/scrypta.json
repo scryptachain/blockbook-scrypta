@@ -22,7 +22,7 @@
     "package_name": "backend-scrypta",
     "package_revision": "satoshilabs-1",
     "system_user": "scrypta",
-    "version": "4.0.0",
+    "version": "2.0.1",
     "binary_url": "https://scrypta.sfo2.digitaloceanspaces.com/lyra-2.0.1.tar.xz",
     "verification_type": "sha256",
     "verification_source": "fac25d018bfd5079c5b7fcbd742fcf2c008755d14b6a9c721a2e9e105d692445",
