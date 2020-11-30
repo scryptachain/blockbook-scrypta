@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# make all-scrypta
+make all-scrypta
 cd run
 mkdir build
 cp ../build/*.deb ./build/
