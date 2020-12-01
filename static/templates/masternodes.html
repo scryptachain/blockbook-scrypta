@@ -1,5 +1,37 @@
 {{define "specific" -}}
 <h1>Masternodes</h1>
+<div class="data-div" id="app">
+    <table class="table table-striped data-table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 10%;">Rank</th>
+                <th style="width: 48%;">Address</th>
+                <th>Status</th>
+                <th class="text-right" style="width: 10%;">Active time</th>
+                <th class="text-right" style="width: 10%;">Last Reward</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/axios@0.20.0-0/dist/axios.min.js"></script>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script>
 {{- end -}}

@@ -2,14 +2,27 @@ package scrypta
 
 import (
 	"encoding/json"
+
 	"github.com/golang/glog"
+	"github.com/juju/errors"
 	"github.com/scryptachain/blockbook-scrypta/bchain"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/btc"
-	"github.com/juju/errors"
 )
 
 type ScryptaRPC struct {
 	*btc.BitcoinRPC
+}
+
+// sendrawtransaction
+
+type CmdMasternodeList struct {
+	Method string   `json:"method"`
+	Params []string `json:"params"`
+}
+
+type ResMasternodeList struct {
+	Error  *bchain.RPCError `json:"error"`
+	Result string           `json:"result"`
 }
 
 const firstBlockWithSpecialTransactions = 454000
@@ -85,4 +98,22 @@ func (b *ScryptaRPC) GetBlock(hash string, height uint32) (*bchain.Block, error)
 
 func (b *ScryptaRPC) GetTransactionForMempool(txid string) (*bchain.Tx, error) {
 	return b.GetTransaction(txid)
+}
+
+// MasternodeList returns masternodes list
+func (b *ScryptaRPC) MasternodeList() (string, error) {
+	glog.V(1).Info("rpc: masternodelist")
+
+	res := ResMasternodeList{}
+	req := CmdMasternodeList{Method: "masternodelist"}
+	err := b.Call(&req, &res)
+
+	if err != nil {
+		return "", err
+	}
+	if res.Error != nil {
+		return "", res.Error
+	}
+
+	return res.Result, nil
 }

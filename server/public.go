@@ -191,6 +191,7 @@ func (s *PublicServer) ConnectFullPublicInterface() {
 	serveMux.HandleFunc(path+"api/v2/balancehistory/", s.jsonHandler(s.apiBalanceHistory, apiDefault))
 	serveMux.HandleFunc(path+"api/v2/tickers/", s.jsonHandler(s.apiTickers, apiV2))
 	serveMux.HandleFunc(path+"api/v2/tickers-list/", s.jsonHandler(s.apiTickersList, apiV2))
+	serveMux.HandleFunc(path+"api/v2/masternodes/", s.jsonHandler(s.apiMasternodesList, apiV2))
 	// socket.io interface
 	serveMux.Handle(path+"socket.io/", s.socketio.GetHandler())
 	// websocket interface
@@ -1168,6 +1169,22 @@ func (s *PublicServer) apiSendTx(r *http.Request, apiVersion int) (interface{}, 
 		return res, nil
 	}
 	return nil, api.NewAPIError("Missing tx blob", true)
+}
+
+// apiMasternodesList returns a list of available Masternodes
+
+type resultMasternodeList struct {
+	Result string `json:"result"`
+}
+
+func (s *PublicServer) apiMasternodesList(r *http.Request, apiVersion int) (interface{}, error) {
+	var err error
+	var res resultMasternodeList
+	res.Result, err = s.chain.MasternodeList()
+	if err != nil {
+		return nil, api.NewAPIError(err.Error(), true)
+	}
+	return res, err
 }
 
 // apiTickersList returns a list of available FiatRates currencies

@@ -58,3 +58,8 @@ func (b *BaseChain) EthereumTypeGetErc20ContractInfo(contractDesc AddressDescrip
 func (b *BaseChain) EthereumTypeGetErc20ContractBalance(addrDesc, contractDesc AddressDescriptor) (*big.Int, error) {
 	return nil, errors.New("Not supported")
 }
+
+// Masternodelist is not supported
+func (b *BaseChain) MasternodeList() (string, error) {
+	return "", nil
+}

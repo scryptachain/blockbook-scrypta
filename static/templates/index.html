@@ -40,10 +40,6 @@
                     <td class="data {{if not $bb.InSyncMempool}}text-danger{{else}}text-success{{end}}">{{$bb.InSyncMempool}}</td>
                 </tr>
                 <tr>
-                    <td>Last Mempool Update</td>
-                    <td class="data">{{formatTimeCET $bb.LastMempoolTime}}</td>
-                </tr>
-                <tr>
                     <td>Txs in Mempool</td>
                     <td class="data">{{if .InternalExplorer}}<a href="/mempool">{{$bb.MempoolSize}}</a>{{else}}{{$bb.MempoolSize}}{{end}}</td>
                 </tr>

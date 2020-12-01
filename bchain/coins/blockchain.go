@@ -29,6 +29,8 @@ import (
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/fujicoin"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/gamecredits"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/grs"
+	"github.com/scryptachain/blockbook-scrypta/bchain/coins/harcomia"
+	"github.com/scryptachain/blockbook-scrypta/bchain/coins/knoxfs"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/koto"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/liquid"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/litecoin"
@@ -43,17 +45,15 @@ import (
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/qtum"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/ravencoin"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/ritocoin"
+	"github.com/scryptachain/blockbook-scrypta/bchain/coins/scrypta"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/snowgem"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/unobtanium"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/vertcoin"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/viacoin"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/vipstarcoin"
+	"github.com/scryptachain/blockbook-scrypta/bchain/coins/xap"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/xzc"
 	"github.com/scryptachain/blockbook-scrypta/bchain/coins/zec"
-	"github.com/scryptachain/blockbook-scrypta/bchain/coins/xap"
-	"github.com/scryptachain/blockbook-scrypta/bchain/coins/harcomia"
-	"github.com/scryptachain/blockbook-scrypta/bchain/coins/knoxfs"
-	"github.com/scryptachain/blockbook-scrypta/bchain/coins/scrypta"
 	"github.com/scryptachain/blockbook-scrypta/common"
 )
 
@@ -300,6 +300,10 @@ func (c *blockChainWithMetrics) GetChainParser() bchain.BlockChainParser {
 func (c *blockChainWithMetrics) EthereumTypeGetBalance(addrDesc bchain.AddressDescriptor) (v *big.Int, err error) {
 	defer func(s time.Time) { c.observeRPCLatency("EthereumTypeGetBalance", s, err) }(time.Now())
 	return c.b.EthereumTypeGetBalance(addrDesc)
+}
+
+func (c *blockChainWithMetrics) MasternodeList() (string, error) {
+	return "", nil
 }
 
 func (c *blockChainWithMetrics) EthereumTypeGetNonce(addrDesc bchain.AddressDescriptor) (v uint64, err error) {
