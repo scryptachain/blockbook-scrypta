@@ -436,6 +436,7 @@ type TemplateData struct {
 func (s *PublicServer) parseTemplates() []*template.Template {
 	templateFuncMap := template.FuncMap{
 		"formatTime":               formatTime,
+		"formatTimeCET":            formatTimeCET,
 		"formatUnixTime":           formatUnixTime,
 		"formatAmount":             s.formatAmount,
 		"formatAmountWithDecimals": formatAmountWithDecimals,
@@ -508,6 +509,14 @@ func formatUnixTime(ut int64) string {
 
 func formatTime(t time.Time) string {
 	return t.Format(time.RFC1123)
+}
+
+func formatTimeCET(t time.Time) string {
+	loc, err := time.LoadLocation("Europe/Rome")
+	if err != nil {
+		panic(err)
+	}
+	return t.In(loc).Format(time.RFC1123)
 }
 
 // for now return the string as it is
