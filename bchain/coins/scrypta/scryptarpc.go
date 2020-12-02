@@ -105,7 +105,7 @@ func (b *ScryptaRPC) MasternodeList() (string, error) {
 	glog.V(1).Info("rpc: masternodelist")
 
 	res := ResMasternodeList{}
-	req := CmdMasternodeList{Method: "masternodelist"}
+	req := CmdMasternodeList{Method: "masternode list"}
 	err := b.Call(&req, &res)
 
 	if err != nil {
