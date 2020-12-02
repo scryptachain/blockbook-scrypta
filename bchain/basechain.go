@@ -60,6 +60,6 @@ func (b *BaseChain) EthereumTypeGetErc20ContractBalance(addrDesc, contractDesc A
 }
 
 // Masternodelist is not supported
-func (b *BaseChain) MasternodeList() ([]string, error) {
-	return []string{}, nil
+func (b *BaseChain) MasternodeList() ([]interface{}, error) {
+	return nil, nil
 }

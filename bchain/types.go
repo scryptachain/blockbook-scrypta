@@ -269,7 +269,7 @@ type BlockChain interface {
 	EstimateSmartFee(blocks int, conservative bool) (big.Int, error)
 	EstimateFee(blocks int) (big.Int, error)
 	SendRawTransaction(tx string) (string, error)
-	MasternodeList() ([]string, error)
+	MasternodeList() ([]interface{}, error)
 	GetMempoolEntry(txid string) (*MempoolEntry, error)
 	// parser
 	GetChainParser() BlockChainParser

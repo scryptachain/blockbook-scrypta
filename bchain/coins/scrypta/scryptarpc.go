@@ -22,7 +22,7 @@ type CmdMasternodeList struct {
 
 type ResMasternodeList struct {
 	Error  *bchain.RPCError `json:"error"`
-	Result []string           `json:"result"`
+	Result []interface{}           `json:"result"`
 }
 
 const firstBlockWithSpecialTransactions = 454000
@@ -101,7 +101,7 @@ func (b *ScryptaRPC) GetTransactionForMempool(txid string) (*bchain.Tx, error) {
 }
 
 // MasternodeList returns masternodes list
-func (b *ScryptaRPC) MasternodeList() ([]string, error) {
+func (b *ScryptaRPC) MasternodeList() ([]interface{}, error) {
 	glog.V(1).Info("rpc: masternodelist")
 
 	res := ResMasternodeList{}
@@ -110,10 +110,10 @@ func (b *ScryptaRPC) MasternodeList() ([]string, error) {
 	err := b.Call(&req, &res)
 
 	if err != nil {
-		return []string{}, err
+		return nil, err
 	}
 	if res.Error != nil {
-		return []string{}, res.Error
+		return nil, res.Error
 	}
 
 	return res.Result, nil

@@ -302,7 +302,7 @@ func (c *blockChainWithMetrics) EthereumTypeGetBalance(addrDesc bchain.AddressDe
 	return c.b.EthereumTypeGetBalance(addrDesc)
 }
 
-func (c *blockChainWithMetrics) MasternodeList() ([]string, error) {
+func (c *blockChainWithMetrics) MasternodeList() ([]interface{}, error) {
 	return c.b.MasternodeList()
 }
 

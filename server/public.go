@@ -1174,7 +1174,7 @@ func (s *PublicServer) apiSendTx(r *http.Request, apiVersion int) (interface{}, 
 // apiMasternodesList returns a list of available Masternodes
 
 type resultMasternodeList struct {
-	Result []string `json:"result"`
+	Result []interface{} `json:"result"`
 }
 
 func (s *PublicServer) apiMasternodesList(r *http.Request, apiVersion int) (interface{}, error) {
