@@ -5,19 +5,21 @@
         <thead>
             <tr>
                 <th style="width: 10%;">Rank</th>
-                <th style="width: 48%;">Address</th>
-                <th>Status</th>
-                <th class="text-right" style="width: 10%;">Active time</th>
-                <th class="text-right" style="width: 10%;">Last Reward</th>
+                <th>Address</th>
+                <th>Last seen</th>
+                <th>Last Reward</th>
+                <th>IP</th>
+                <th class="text-right" style="width: 10%;">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr v-for="masternode in masternodes" v-bind:key="masternode.addr">
+                <td>{{ masternode.rank }}</td>
+                <td>{{ masternode.addr }}</td>
+                <td>{{ new Date(masternode.lastseen) }}</td>
+                <td>{{ new Date(masternode.lastpaid) }}</td>
+                <td>{{ masternode.host }}</td>
+                <td>{{ masternode.status }}</td>
             </tr>
         </tbody>
     </table>
@@ -30,7 +32,12 @@
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'Hello Vue!'
+            masternodes: {}
+        },
+        async mounted() {
+            const app = this
+            const api = await axios.get('/api/v2/masternodes/')
+            app.masternodes = api.data.result
         }
     })
 </script>
