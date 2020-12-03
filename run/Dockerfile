@@ -5,7 +5,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y software-properties-common build-essential git wget pkg-config lxc-dev libzmq3-dev libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev libevent-dev libminiupnpc-dev liblz4-dev graphviz
 
 COPY ./build/backend-scrypta_2.0.1-satoshilabs-1_amd64.deb /root/backend.deb
-COPY ./build/blockbook-scrypta_0.3.8_amd64.deb /root/blockbook.deb
+COPY ./build/blockbook-scrypta_0.3.9_amd64.deb /root/blockbook.deb
 
 RUN apt install /root/backend.deb -y
 RUN apt install /root/blockbook.deb -y

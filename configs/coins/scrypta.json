@@ -25,7 +25,7 @@
     "version": "2.0.1",
     "binary_url": "https://scrypta.sfo2.digitaloceanspaces.com/lyra-2.0.1.tar.xz",
     "verification_type": "sha256",
-    "verification_source": "fac25d018bfd5079c5b7fcbd742fcf2c008755d14b6a9c721a2e9e105d692445",
+    "verification_source": "01543b1f358a96bb85bbef3611ecc03b2b4f73d8f4bbd4a0c354a4289b2a8d5f",
     "extract_command": "tar -C backend --strip 1 -xf",
     "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/lyrad -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
     "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",

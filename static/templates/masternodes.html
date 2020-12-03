@@ -1,23 +1,26 @@
 {{define "specific" -}}
-<h1>Masternodes</h1>
 <div class="data-div" id="app">
+    <h1>
+        Masternodes
+        <span style="font-size:13px">(<span v-html="countMasternodes"></span>)</span>
+    </h1>
     <table class="table table-striped data-table table-hover">
         <thead>
             <tr>
-                <th style="width: 10%;">Rank</th>
-                <th style="width: 48%;">Address</th>
-                <th>Status</th>
-                <th class="text-right" style="width: 10%;">Active time</th>
-                <th class="text-right" style="width: 10%;">Last Reward</th>
+                <th class="text-center" style="width: 50px">Rank</th>
+                <th style="width: 330px">Address</th>
+                <th style="width:250px" class="text-left">IP</th>
+                <th class="text-center" style="width: 10%;">Status</th>
+                <th class="text-center" style="width: 10%;">Details</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr v-for="masternode in masternodes" v-bind:key="masternode.addr">
+                <td class="text-center" v-html="masternode.rank"></td>
+                <td v-html="masternode.addr"></td>
+                <td class="text-left" v-html="masternode.host"></td>
+                <td class="text-center" v-html="masternode.status"></td>
+                <td class="text-center" v-html="masternode.button"></td>
             </tr>
         </tbody>
     </table>
@@ -30,7 +33,17 @@
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'Hello Vue!'
+            masternodes: {},
+            countMasternodes: 0
+        },
+        async mounted() {
+            const app = this;
+            const api = await axios.get('/api/v2/masternodes/');
+            for (let k in api.data.result) {
+                api.data.result[k].button = '<a href="/address/' + api.data.result[k].addr + '"><button type="button" class="btn btn-primary btn-sm">Details</button></a>';
+            }
+            app.masternodes = api.data.result;
+            app.countMasternodes = app.masternodes.length
         }
     })
 </script>
