@@ -28,6 +28,7 @@ The following methods are supported:
 - [Tickers list](#tickers-list)
 - [Tickers](#tickers)
 - [Balance history](#balance-history)
+- [Masternodes list](#masternodes-list)
 
 #### Status page
 Status page returns current status of Blockbook and connected backend.
@@ -715,6 +716,51 @@ Example response (fiatcurrency=usd&groupBy=172800):
 ```
 
 The value of `sentToSelf` is the amount sent from the same address to the same address or within addresses of xpub.
+
+### Masternodes list
+
+Returns the list of all masternodes:
+
+```
+GET /api/v2/masternodes
+```
+
+Example response will be: 
+```
+{
+  "result": [
+    {
+      "activetime": 2745169,
+      "addr": "LcPxX4fMs1w6ds2GxTbmduSyhxkaauTzRD",
+      "host": "2604:a880:800:14::6b:4001",
+      "lastpaid": 1607003866,
+      "lastseen": 1607010145,
+      "network": "ipv6",
+      "outidx": 0,
+      "port": 42222,
+      "rank": 1,
+      "status": "ENABLED",
+      "txhash": "2e0a00180e793541fb8de78f4b4a3e3ae0f5232f80e8e09549284e70e3ca2675",
+      "version": 70920
+    },
+    ...
+    {
+      "activetime": 9248461,
+      "addr": "LR5BrYy5xAAt97ataasym5E49wWSMCR9iA",
+      "host": "139.59.14.186",
+      "lastpaid": 1606991023,
+      "lastseen": 1607010184,
+      "network": "ipv4",
+      "outidx": 0,
+      "port": 42222,
+      "rank": 2,
+      "status": "ENABLED",
+      "txhash": "c84849713ed8e4f1ccbeedc6cfdb3ecf38352916f5bd906f8fd896028936a4fa",
+      "version": 70920
+    }
+  ]
+}
+```
 
 ### Websocket API
 
