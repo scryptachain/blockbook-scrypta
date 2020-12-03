@@ -14,12 +14,12 @@
         </thead>
         <tbody>
             <tr v-for="masternode in masternodes" v-bind:key="masternode.addr">
-                <td>{{ masternode.rank }}</td>
-                <td>{{ masternode.addr }}</td>
-                <td>{{ new Date(masternode.lastseen) }}</td>
-                <td>{{ new Date(masternode.lastpaid) }}</td>
-                <td>{{ masternode.host }}</td>
-                <td>{{ masternode.status }}</td>
+                <td v-html="masternode.rank"></td>
+                <td v-html="masternode.addr"></td>
+                <td v-html="masternode.lastseen"></td>
+                <td v-html="masternode.lastpaid"></td>
+                <td v-html="masternode.host"></td>
+                <td v-html="masternode.status"></td>
             </tr>
         </tbody>
     </table>
@@ -37,6 +37,10 @@
         async mounted() {
             const app = this
             const api = await axios.get('/api/v2/masternodes/')
+            for(let k in api.data.result){
+                api.data.result[k].lastseen = new Date(api.data.result[k].lastseen)
+                api.data.result[k].lastpaid = new Date(api.data.result[k].lastpaid)
+            }
             app.masternodes = api.data.result
         }
     })
